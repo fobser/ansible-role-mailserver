@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: gonzalo-
+  description: Role to setup a mailserver with opensmtpd, dovecot, dkimproxy and rspamd.
+  license: BSD
+  min_ansible_version: 1.9
+  galaxy_tags:
+  - openbsd
+  - system
+  - ssh
+  platforms:
+  - name: OpenBSD
+    versions:
+     - 6.1
+     - 6.0
+     - 5.9
+dependencies: []
