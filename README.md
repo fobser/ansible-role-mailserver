@@ -14,6 +14,10 @@ Notes
 This is still a WIP, so far, you need to create DKIM keys, new users and DNS entrys. Also, you need
 to enable dovecot, smtpd, rspamd and dkimproxy_{in,out} at boot.
 
+You need to adjust your pf.conf.
+
+Also, you need to delete examples on /etc/mail/virtuals and /etc/mail/domains
+
 Feedback is welcome.
 
 Example Playbook

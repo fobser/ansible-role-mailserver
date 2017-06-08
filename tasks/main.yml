@@ -49,3 +49,9 @@
 
 - name: Enable rspamd
   service: name=rspamd state=started enabled=yes
+
+- name: Enable dkimproxy_in
+  service: name=dkimproxy_in state=started enabled=yes
+
+- name: Enable dkimproxy_out
+  service: name=dkimproxy_out state=started enabled=yes

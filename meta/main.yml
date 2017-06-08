@@ -7,7 +7,11 @@ galaxy_info:
   galaxy_tags:
   - openbsd
   - system
-  - ssh
+  - mailserver
+  - rspamd
+  - dovecot
+  - dkimproxy
+  - antispam
   platforms:
   - name: OpenBSD
     versions:
