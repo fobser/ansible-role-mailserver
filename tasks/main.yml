@@ -15,7 +15,7 @@
     name: vmail
     comment: "Virtual Mail"
     shell: /sbin/nologin
-    home: /var/vmail
+    home: "{{ mail_dir }}"
     group: vmail
 
 - name: Installing packages
@@ -49,9 +49,3 @@
 
 - name: Enable rspamd
   service: name=rspamd state=started enabled=yes
-
-- name: Enable dkimproxy_in
-  service: name=dkimproxy_in state=started enabled=yes
-
-- name: Enable dkimproxy_out
-  service: name=dkimproxy_out state=started enabled=yes
