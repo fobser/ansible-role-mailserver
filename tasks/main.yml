@@ -41,6 +41,15 @@
 -  template: src=auth-passwdfile.conf.ext.j2 dest="/etc/dovecot/conf.d/auth-passwdfile.conf.ext" owner="root" group="wheel" mode="0644"
 -  template: src=dovecot.conf.j2 dest="/etc/dovecot/dovecot.conf" owner="root" group="wheel" mode="0644"
 
+- blockinfile: |
+      dest=/etc/login.conf backup=yes
+      content="## Dovecot
+        dovecot:\
+                :openfiles-cur=1024:\
+                :openfiles-max=2048:\
+                :tc=daemon:"
+      insertafter=EOF
+
 - name: Enable smtpd
   service: name=smtpd state=started enabled=yes
 
