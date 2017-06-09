@@ -14,11 +14,40 @@ Notes
 This is still a WIP, so far, you need to create DKIM keys, new users and DNS entrys. Also, you need
 to enable dovecot, smtpd, rspamd and dkimproxy_{in,out} at boot.
 
-You need to adjust your pf.conf.
+You need to adjust your pf.conf (example bellow).
 
 Also, you need to delete examples on /etc/mail/virtuals and /etc/mail/domains
 
 Feedback is welcome.
+
+Example pf.conf
+---------------
+
+For IMAPs I like to keep bruteforce people away with some tweaks on pf.conf, keep in mind that
+lower numbers than that, can couse problems checking emails on huge directories like misc or mailing list.
+
+```
+...
+pass in quick on egress proto tcp from any \
+        to (egress) port imaps \
+        flags S/SA modulate state \
+        (max-src-conn 50, max-src-conn-rate 50/5, overload <bruteforce> flush global)
+...
+```
+
+For SMTP I have pretty the same:
+
+```
+...
+pass in quick log (to pflog1) proto tcp from any \
+        to (egress) port smtp
+
+pass in quick log (to pflog1) proto tcp from any \
+        to (egress) port { submission, smtps } \
+        flags S/SA modulate state \
+        (max-src-conn 50, max-src-conn-rate 25/5, overload <bruteforce> flush global)
+...
+```
 
 Example Playbook
 ----------------
