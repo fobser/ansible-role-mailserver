@@ -26,7 +26,7 @@
 -  template: src=blacklist-recipients.j2 dest="/etc/mail/blacklist-recipients" owner="root" group="wheel" mode="0644"
 -  template: src=domains.j2 dest="/etc/mail/domains" owner="root" group="wheel" mode="0644"
 -  template: src=virtuals.j2 dest="/etc/mail/virtuals" owner="root" group="wheel" mode="0644"
--  template: src=passwd.j2 dest="/etc/mail/passwd" owner="root" group="wheel" mode="0644"
+-  template: src=passwd.j2 dest="/etc/mail/passwd" owner="_dovecot" group="_smtpd" mode="0440"
 -  template: src=dkimproxy_in.conf.j2 dest="/etc/dkimproxy_in.conf" owner="root" group="wheel" mode="0644"
 -  template: src=dkimproxy_out.conf.j2 dest="/etc/dkimproxy_out.conf" owner="root" group="wheel" mode="0644"
 -  template: src=90-plugin.conf.j2 dest="/etc/dovecot/conf.d/90-plugin.conf" owner="root" group="wheel" mode="0644"
