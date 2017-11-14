@@ -63,10 +63,10 @@ Example Playbook
    domain: 'foobar.com'
    mail_dir: '/var/vmail'
    mail_user: 'gonzalo'
-   release: '6.1'
+   release: '6.2'
    arch: 'amd64'
-   installurl_mirror: 'https://ftp5.usa.openbsd.org/pub/OpenBSD/'
-   pkg_path: 'https://ftp5.usa.openbsd.org/pub/OpenBSD/{{ release }}/packages/{{ arch }}/'
+   installurl_mirror: 'https://fastly.cdn.openbsd.org/pub/OpenBSD/'
+   pkg_path: 'https://fastly.cdn.openbsd.org/pub/OpenBSD/{{ release }}/packages/{{ arch }}/'
    packages_list:
     - dovecot
     - dovecot-pigeonhole
