@@ -12,6 +12,10 @@ signature dkim(c=relaxed)
 signature domainkeys(c=nofws)
 
 # specify location of the private key
+# mkdir /etc/ssl/dkim && cd /etc/ssl/dkim
+# openssl genrsa -out {{ domain }}.key 1024
+# openssl rsa -in {{ domain }}.key -pubout -out {{ domain }}-public.key
+# 
 keyfile		/etc/ssl/dkim/{{ domain }}.key
 
 # specify the selector (i.e. the name of the key record put in DNS)
