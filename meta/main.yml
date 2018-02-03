@@ -12,11 +12,13 @@ galaxy_info:
   - mailserver
   - rspamd
   - dovecot
+  - dovecot-pigeonhole
   - dkimproxy
   - antispam
   platforms:
   - name: OpenBSD
     versions:
+     - 6.2
      - 6.1
      - 6.0
      - 5.9
