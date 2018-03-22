@@ -1,9 +1,8 @@
-auth_verbose = yes
+#auth_verbose = yes
+#mail_debug = yes
+#log_path = /var/log/dovecot
 imap_client_workarounds = delay-newmail tb-extra-mailbox-sep tb-lsub-flags
 listen = *
-#mail_debug = yes
-log_path = /var/log/dovecot
-#debug_log_path = /var/log/dovecot/dovecot-debug.log
 mail_home = {{ mail_dir }}/%d/%n
 mail_max_userip_connections = 20
 managesieve_notify_capability = mailto
@@ -33,9 +32,6 @@ namespace inbox {
 }
 
 plugin {
-	auth_debug = no
-	auth_verbose = no
-	mail_debug = no
 	sieve = {{ mail_dir }}/%d/%n/%n.sieve
 	sieve_global_dir = /var/sieve
 	sieve_global_path = /var/sieve/global-default.sieve
