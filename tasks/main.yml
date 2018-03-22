@@ -40,6 +40,9 @@
 -  template: src=10-master.conf.j2 dest="/etc/dovecot/conf.d/10-master.conf" owner="root" group="wheel" mode="0644"
 -  template: src=auth-passwdfile.conf.ext.j2 dest="/etc/dovecot/conf.d/auth-passwdfile.conf.ext" owner="root" group="wheel" mode="0644"
 -  template: src=dovecot.conf.j2 dest="/etc/dovecot/dovecot.conf" owner="root" group="wheel" mode="0644"
+-  template: src=10-logging.conf.j2 dest="/etc/dovecot/conf.d/10-logging.conf" owner="root" group="wheel" mode="0644"
+-  template: src=10-ssl.conf.j2 dest="/etc/dovecot/conf.d/10-ssl.conf" owner="root" group="wheel" mode="0644"
+-  template: src=auth-static.conf.ext.j2 dest="/etc/dovecot/conf.d/auth-static.conf.ext" owner="root" group="wheel" mode="0644"
 
 - blockinfile: |
       dest=/etc/login.conf backup=yes

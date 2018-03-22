@@ -1,3 +1,6 @@
+imap_client_workarounds = delay-newmail tb-extra-mailbox-sep tb-lsub-flags
+
 protocol imap {
-	mail_plugins = $mail_plugins imap_sieve
+	mail_plugins = $mail_plugins
+	mail_max_userip_connections = 20
 }
