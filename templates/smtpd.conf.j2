@@ -4,8 +4,8 @@ bounce-warn 1h, 6h, 2d
 expire 3d
 
 ## PKI
-pki {{ domain }} certificate	"/etc/ssl/{{ domain }}.fullchain.pem"
-pki {{ domain }} key		"/etc/ssl/private/{{ domain }}.key"
+pki {{ domain }} certificate	"/etc/ssl/{{ domain }}_fullchain.pem"
+pki {{ domain }} key		"/etc/ssl/private/{{ domain }}_private.pem"
 
 ## Tables
 table aliases			file:/etc/mail/aliases
