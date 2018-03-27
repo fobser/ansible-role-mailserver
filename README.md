@@ -63,7 +63,7 @@ Example Playbook
    domain: 'foobar.com'
    mail_dir: '/var/vmail'
    mail_user: 'gonzalo'
-   release: '6.2'
+   release: '6.3'
    arch: 'amd64'
    installurl_mirror: 'https://fastly.cdn.openbsd.org/pub/OpenBSD/'
    pkg_path: 'https://fastly.cdn.openbsd.org/pub/OpenBSD/{{ release }}/packages/{{ arch }}/'
