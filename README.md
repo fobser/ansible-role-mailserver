@@ -75,6 +75,26 @@ Example Playbook
     - opensmtpd-extras
 ```
 
+Enable Spam Learning with Dovecot Antispam
+------------------------------------------
+The rspamd system can be trained to learn spam (or ham) by checking if users move
+their email from a folder in their Inbox to the Spam folder (to flag as spam), or
+the reverse: move incorrectly flagged spam out of the Spam folder. This will incur
+some overhead when it comes to moving messages, but it can enable the system to learn
+spam/ham more efficiently.
+
+Note: This ONLY works with IMAP
+
+To enable, modify the following line in /etc/dovecot/conf.d/20-imap.conf:
+```
+mail_plugins = $mail_plugins antispam
+```
+
+Also edit /etc/dovecot/conf.d/90-plugin.conf if you want to enable more logging
+or to change the default Spam and Trash folders (if they are different on your system)
+and then restart dovecot with: ```rcctl restart dovecot```
+
+
 License
 -------
 
