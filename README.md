@@ -49,6 +49,57 @@ pass in quick log (to pflog1) proto tcp from any \
 ...
 ```
 
+Example Ansible
+---------------
+
+This example is for a remote setup, so ,,test'' is your future mailserver, you
+already put your ssh key on ,,test'' and this server already have python2.7 
+installed.
+
+```
+...
+
+$ doas pkg_add ansible
+...
+$ cd /tmp && mkdir ansible && cd ansible
+$ git clone https://github.com/gonzalo-/ansible-role-mailserver
+Cloning into 'ansible-role-mailserver'...
+remote: Counting objects: 143, done.
+remote: Compressing objects: 100% (35/35), done.
+remote: Total 143 (delta 26), reused 42 (delta 18), pack-reused 86
+Receiving objects: 100% (143/143), 28.24 KiB | 148.00 KiB/s, done.
+Resolving deltas: 100% (53/53), done.
+$ mv ansible-role-mailserver gonzalo-.mailserver
+$ cat hosts
+test ansible_python_interpreter=/usr/local/bin/python2.7
+$ cat mailserver.yml
+---
+- hosts: test
+  roles:
+     - role: gonzalo-.mailserver
+  become: yes
+  become_method: doas
+
+  vars:
+   domain: 'foobar.com'
+   mail_dir: '/var/vmail'
+   mail_user: 'gonzalo'
+   release: '6.3'
+   arch: 'amd64'
+   installurl_mirror: 'https://fastly.cdn.openbsd.org/pub/OpenBSD/'
+   pkg_path: 'https://fastly.cdn.openbsd.org/pub/OpenBSD/{{ release }}/packages/{{ arch }}/'
+   packages_list:
+    - dovecot
+    - dovecot-pigeonhole
+    - dkimproxy
+    - rspamd
+    - opensmtpd-extras
+$ ansible-playbook -i hosts mailserver.yml
+...MAGIC...
+$
+...
+```
+
 Example Playbook
 ----------------
 ```
