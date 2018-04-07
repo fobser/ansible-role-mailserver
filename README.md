@@ -56,7 +56,9 @@ This example is for a remote setup, so ,,test'' is your future mailserver, you
 already put your ssh key on ,,test'' and this server already have python2.7 
 installed.
 
+```
 ...
+
 
 $ doas pkg_add ansible
 ...
@@ -97,6 +99,7 @@ $ ansible-playbook -i hosts mailserver.yml
 ...MAGIC...
 $
 ```
+...
 
 Example Playbook
 ----------------
