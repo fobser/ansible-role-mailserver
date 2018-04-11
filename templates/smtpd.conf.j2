@@ -37,10 +37,6 @@ accept from any \
         deliver to mda \
         "/usr/local/bin/rspamc --mime --exec \"/usr/local/libexec/dovecot/dovecot-lda -f %{sender} -d %{dest}\"" as vmail
 
-accept for local virtual <virtuals> \
-        deliver to mda \
-        "/usr/local/bin/rspamc --mime --exec \"/usr/local/libexec/dovecot/dovecot-lda -f %{sender} -d %{dest}\"" as vmail
-
 accept tagged DKIM_OUT for any relay \
 	hostname {{ domain }}
 
