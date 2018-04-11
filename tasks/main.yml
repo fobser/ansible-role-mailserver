@@ -38,6 +38,7 @@
 -  template: src=10-auth.conf.j2 dest="/etc/dovecot/conf.d/10-auth.conf" owner="root" group="wheel" mode="0644"
 -  template: src=20-imap.conf.j2 dest="/etc/dovecot/conf.d/20-imap.conf" owner="root" group="wheel" mode="0644"
 -  template: src=15-lda.conf.j2 dest="/etc/dovecot/conf.d/15-lda.conf" owner="root" group="wheel" mode="0644"
+-  template: src=15-mailboxes.conf.j2 dest="/etc/dovecot/conf.d/15-mailboxes.conf.j2" owner="root" group="wheel" mode="0644"
 -  template: src=10-director.conf.j2 dest="/etc/dovecot/conf.d/10-director" owner="root" group="wheel" mode="0644"
 -  template: src=20-managesieve.conf.j2 dest="/etc/dovecot/conf.d/20-managesieve.conf" owner="root" group="wheel" mode="0644"
 -  template: src=10-mail.conf.j2 dest="/etc/dovecot/conf.d/10-mail.conf" owner="root" group="wheel" mode="0644"
