@@ -57,9 +57,6 @@ already put your ssh key on ,,test'' and this server already have python2.7
 installed.
 
 ```
-...
-
-
 $ doas pkg_add ansible
 ...
 $ cd /tmp && mkdir ansible && cd ansible
@@ -99,7 +96,6 @@ $ ansible-playbook -i hosts mailserver.yml
 ...MAGIC...
 $
 ```
-...
 
 Example Playbook
 ----------------
@@ -146,11 +142,6 @@ Also edit /etc/dovecot/conf.d/90-plugin.conf if you want to enable more logging
 or to change the default Spam and Trash folders (if they are different on your system)
 and then restart dovecot with: ```rcctl restart dovecot```
 
-
-License
--------
-
-BSD
 
 Author Information
 ------------------
