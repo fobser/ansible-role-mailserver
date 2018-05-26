@@ -1,10 +1,10 @@
-queue compression
+set queue compression
 
-bounce-warn 1h, 6h, 2d
-expire 3d
+set bounce warn-interval 1h, 6h, 2d
+set queue ttl 3d
 
 ## PKI
-pki {{ domain }} certificate	"/etc/ssl/{{ domain }}_fullchain.pem"
+pki {{ domain }} cert		"/etc/ssl/{{ domain }}_fullchain.pem"
 pki {{ domain }} key		"/etc/ssl/private/{{ domain }}_private.pem"
 
 ## Tables
@@ -15,7 +15,7 @@ table virtuals			file:/etc/mail/virtuals
 table blacklist-recipients	file:/etc/mail/blacklist-recipients
 
 ## Limits
-max-message-size 50M
+set smtp max-message-size 50M
 
 ## Ports
 listen on lo0
@@ -23,22 +23,22 @@ listen on lo0 port 10028 tag DKIM_OUT
 listen on egress port 25 tls pki {{ domain }}
 listen on egress port 587 tls-require pki {{ domain }} auth <passwd>
 
+action "mda_with_virtuals" mda \
+	"/usr/local/bin/rspamc --mime --exec '/usr/local/libexec/dovecot/dovecot-lda -f %{sender} -d %{dest}'" \
+	virtual <virtuals> user vmail
+action "relay" relay helo {{ domain }}
+action "dkim" relay host smtp://127.0.0.1:10027
+
 ## Block spammers
-reject from any sender <blacklist-recipients> for domain <domains>
+match from any mail-from <blacklist-recipients> for domain <domains> reject
 
 # Accept mail sent from local server to a local account
-accept from local \
-        for local virtual <virtuals> \
-        deliver to mda \
-        "/usr/local/bin/rspamc --mime --exec \"/usr/local/libexec/dovecot/dovecot-lda -f %{sender} -d %{dest}\"" as vmail
+match from local for local action "mda_with_virtuals"
+        
 
-accept from any \
-        for domain <domains> virtual <virtuals> \
-        deliver to mda \
-        "/usr/local/bin/rspamc --mime --exec \"/usr/local/libexec/dovecot/dovecot-lda -f %{sender} -d %{dest}\"" as vmail
+match from any for domain <domains> action "mda_with_virtuals"
 
-accept tagged DKIM_OUT for any relay \
-	hostname {{ domain }}
+match tag DKIM_OUT for any action "relay"
 
-accept from local for any \
-	relay via smtp://127.0.0.1:10027
+match from local for any action dkim
+match auth from any for any action dkim
